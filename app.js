@@ -2,7 +2,7 @@
 const Chalk = require('chalk')
 const { argv, demandOption } = require('yargs')
 const yargs = require('yargs')
-const importedStr = require('./notes.js')
+const notes = require('./notes.js')
 
 //console.log(process.argv)
 
@@ -26,7 +26,7 @@ yargs.command({
         },
     },
     handler : function (argv){
-        console.log("hello" + argv.title + argv.body)
+        notes.addNote(argv.title, argv.body)
     }
 
 })
