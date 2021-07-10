@@ -1,5 +1,6 @@
 //import file
 const Chalk = require('chalk')
+const { argv, demandOption } = require('yargs')
 const yargs = require('yargs')
 const importedStr = require('./notes.js')
 
@@ -12,8 +13,20 @@ yargs.version('1.1.0')
 yargs.command({
     command : 'add',
     describe : 'add a new note',
-    handler : function (){
-        console.log("hello")
+    builder:{
+        title:{
+            describe: "Note title",
+            demandOption: "true",
+            type: "string",
+        },
+        body:{
+            describe: "Note body",
+            demandOption: "true",
+            type: "string"
+        },
+    },
+    handler : function (argv){
+        console.log("hello" + argv.title + argv.body)
     }
 
 })
@@ -44,4 +57,5 @@ yargs.command({
         console.log("read the note")
     }
 })
-console.log(yargs.argv)
+
+yargs.parse()
